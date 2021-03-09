@@ -62,6 +62,10 @@ public class ForegroundService extends Service {
         // Get notification icon
         int icon = getResources().getIdentifier((String) extras.get("icon"), "drawable", context.getPackageName());
 
+        if (icon == 0) {
+            icon = getResources().getIdentifier((String) extras.get("icon"), "mipmap", context.getPackageName());
+        }
+
         // Make notification
         Notification notification = new Notification.Builder(context, "foreground.service.channel")
             .setContentTitle((CharSequence) extras.get("title"))
